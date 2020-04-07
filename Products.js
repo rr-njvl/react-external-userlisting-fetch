@@ -1,16 +1,15 @@
 import React from 'react';
-import UserListing from './UserListing';
+import ProductListing from './ProductListing';
 
-class Users extends React.Component {
+class Products extends React.Component {
   state = {
     isLoading: true,
-    users: [],
+    products: [],
     error: null
   };
   constructor(props) {
     super(props);
     this.name = props.name;
-    this.users = [];
   }
 
   componentWillMount() { 
@@ -18,7 +17,7 @@ class Users extends React.Component {
       .then(response => response.json())
       .then(data =>
         this.setState({
-          users: data,
+          products: data,
           isLoading: false,
         })
       )
@@ -26,7 +25,8 @@ class Users extends React.Component {
   }
 
   render() {
-    const { isLoading, users, error } = this.state;
+    const { isLoading, products, error } = this.state;
+    console.log(products);
     return (
       <div className="users">
         <div>
@@ -35,15 +35,15 @@ class Users extends React.Component {
         </div>
         {error ? <p>{error.message}</p> : null}
         {!isLoading ? (
-          <table id="users">
+          <table id="mobiles">
             <tr>
               <th>ID</th>
               <th>Name</th>
-              <th>Email</th>
-              <th>City</th>
+              <th>Quantity</th>
+              <th>Cost (Rupees)</th>
             </tr>
-            {users.map(usr => (
-              <UserListing user={usr} />  
+            {products.map(prod => (
+              <ProductListing product={prod} />  
             ))}
           </table>
         ):(
@@ -54,4 +54,4 @@ class Users extends React.Component {
   }
 }
 
-export default Users;
+export default Products;

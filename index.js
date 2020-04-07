@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import Users from './Users';
+import Products from './Products';
 import './style.css';
 
 class App extends Component {
@@ -14,7 +14,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Users name={this.state.name} />
+        <Products name={this.state.name} />
       </div>
     );
   }
