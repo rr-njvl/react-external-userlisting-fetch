@@ -14,7 +14,7 @@ class Users extends React.Component {
   }
 
   componentWillMount() { 
-    fetch(`https://jsonplaceholder.typicode.com/users`)
+    fetch(`https://my-json-server.typicode.com/rr-njvl/jsondata/products`)
       .then(response => response.json())
       .then(data =>
         this.setState({
