@@ -2,7 +2,6 @@ import React from 'react';
 
 class ProductListing extends React.Component {
   constructor(props) {
-    console.log(props);
     this.id = props.product.id;
     this.name = props.product.name;
     this.quantity = props.product.quantity;
