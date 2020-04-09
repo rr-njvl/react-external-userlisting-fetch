@@ -3,12 +3,9 @@ import ProductListing from './ProductListing';
 
 class Products extends React.Component {
   state = {
-    isLoading: true,
-    products: [],
-    error: null
+    products: []
   };
   constructor(props) {
-    super(props);
     this.name = props.name;
   }
 
@@ -17,38 +14,30 @@ class Products extends React.Component {
       .then(response => response.json())
       .then(data =>
         this.setState({
-          products: data,
-          isLoading: false,
+          products: data
         })
       )
-      .catch(error => this.setState({ error, isLoading: false }));
+      .catch(error => { alert("Service Error")});
   }
 
   render() {
-    const { isLoading, products, error } = this.state;
-    console.log(products);
     return (
       <div className="users">
         <div>
           <h2>{this.name}</h2>
           <p>Display all the users in table format from external JSON service using FETCH()</p>
         </div>
-        {error ? <p>{error.message}</p> : null}
-        {!isLoading ? (
-          <table id="mobiles">
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Quantity</th>
-              <th>Cost (Rupees)</th>
-            </tr>
-            {products.map(prod => (
-              <ProductListing product={prod} />  
-            ))}
-          </table>
-        ):(
-          <h3>Loading...</h3>
-        )}
+        <table id="mobiles">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Cost (Rupees)</th>
+          </tr>
+          {this.state.products.map(prod => (
+            <ProductListing product={prod} />  
+          ))}
+        </table>
       </div>
     );
   }
